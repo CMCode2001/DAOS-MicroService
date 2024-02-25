@@ -1,0 +1,74 @@
+package com.uasz.DAOS_Microservice_Maquette.services;
+
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+
+//importation des classes
+import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.EC;
+import com.uasz.DAOS_Microservice_Maquette.models.UE;
+import com.uasz.DAOS_Microservice_Maquette.repositories.UERepository;
+
+@Service
+@Transactional
+@AllArgsConstructor
+public class UEService {
+    @Autowired
+    private UERepository ueRepository;
+
+    public void ajouterUE(UE ue){
+        UE savedUE = ueRepository.save(ue);
+        savedUE.setDateCreationUE(new Date(System.currentTimeMillis()));
+        ueRepository.save(savedUE);
+    }
+
+    public List<UE> listerToutUE(){
+        return ueRepository.findAll();
+    }
+
+    public UE rechercherUE(Long idUE){
+        return ueRepository.findById(idUE).get();
+    }
+
+    public UE modifierUE(UE ue){
+        UE ueModifier = rechercherUE(ue.getIdUE());
+        ueModifier.setLibelleUE(ue.getLibelleUE());
+        ueModifier.setCodeUE(ue.getCodeUE());
+        ueModifier.setCoefficientUE(ue.getCoefficientUE());
+        ueModifier.setCreditUE(ue.getCreditUE());
+        ueModifier.setCreditUE(ue.getCreditUE());
+        ueModifier.setDescriptionUE(ue.getDescriptionUE());
+        return ueRepository.save(ueModifier);
+    }
+
+    public void supprimerUE(UE ue){
+        ueRepository.delete(ue);
+    }
+
+    public List<EC> afficherLesECs(UE ue){
+        return ueRepository.findByUE(ue);
+    }
+
+    public UE modifier_UE(UE ue, Long id){
+        ue.setIdUE(id);
+        return ueRepository.save(ue);
+    }
+
+    public void supprimer_UE(Long id){
+        ueRepository.deleteById(id);
+    }
+    
+    public UE ajouter_UE(UE ue){
+        UE savedUE = ueRepository.save(ue);
+        savedUE.setDateCreationUE(new Date(System.currentTimeMillis()));
+        return ueRepository.save(savedUE);
+    }
+
+}
