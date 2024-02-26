@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
 import com.uasz.DAOS_Microservice_Maquette.models.Semestre;
 import com.uasz.DAOS_Microservice_Maquette.services.SemestreService;;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(path = "/maquette/semestre")
+@RequestMapping(path = "/maquette/api/semestre")
 public class SemestreRestController {
     @Autowired
     private SemestreService semestreService;

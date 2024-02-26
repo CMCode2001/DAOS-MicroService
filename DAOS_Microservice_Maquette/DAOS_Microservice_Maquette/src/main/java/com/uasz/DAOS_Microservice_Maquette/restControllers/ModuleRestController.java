@@ -18,7 +18,7 @@ import com.uasz.DAOS_Microservice_Maquette.services.ModuleService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(path = "/maquette/module")
+@RequestMapping(path = "/maquette/api/module")
 public class ModuleRestController {
     @Autowired
     private ModuleService moduleService;

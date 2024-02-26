@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceMaquetteApplication<DAOS_Microservice_Maquette>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Maquette.DaosMicroserviceMaquetteApplication",
+            "projectName": "DAOS_Microservice_Maquette",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

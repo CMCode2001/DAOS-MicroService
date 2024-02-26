@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
 import com.uasz.DAOS_Microservice_Maquette.models.Classe;
 import com.uasz.DAOS_Microservice_Maquette.services.ClasseService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/maquette/classe")
+@RequestMapping(path = "/maquette/api/classe")
 public class ClasseRestController {
     @Autowired
     private ClasseService classeService;
