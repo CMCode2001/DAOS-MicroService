@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
+
 import com.uasz.DAOS_Microservice_Maquette.models.Cycle;
 import com.uasz.DAOS_Microservice_Maquette.services.CycleService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/maquette/cycle")
+@RequestMapping(path = "/maquette/api/cycle")
 public class CycleRestController {
     @Autowired
     private CycleService cService;

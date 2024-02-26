@@ -13,11 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Groupe;
+import com.uasz.DAOS_Microservice_Maquette.services.GroupeService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
+
+@CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/maquette/groupe")
+@RequestMapping(path = "/maquette/api/groupe")
 public class GroupeRestController {
-    
+    @Autowired
+    private GroupeService groupeService;
+
+    @GetMapping
+    private List<Groupe> lister_groupe(){
+        return groupeService.rechercherGroupes();
+    }
+
+    @GetMapping(path = "/{id}")
+    private Groupe rechercher_groupe(@PathVariable Long id){
+        return groupeService.rechercherUneGroupe(id);
+    }
+
+    @PostMapping
+    public Groupe ajouter_groupe(@RequestBody Groupe c){
+        return groupeService.ajouter_groupe(c);
+    }
+
+    @PutMapping(path = "/{id}")
+    public Groupe modifier_groupe(@PathVariable Long id, @RequestBody Groupe c){
+        return groupeService.modifier_groupe( c, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void supprimer_groupe(@PathVariable Long id){
+        groupeService.supprimer_groupe(id);
+    }
 }

@@ -13,10 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+import com.uasz.DAOS_Microservice_Maquette.models.Maquette;
+import com.uasz.DAOS_Microservice_Maquette.services.MaquetteService;
+
+
+
+@CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/maquette/maquette")
+@RequestMapping(path = "/maquette/api/maquette")
 public class MaquetteRestController {
-    
+    @Autowired
+    private MaquetteService maquetteService;
+
+    @GetMapping
+    private List<Maquette> lister_maquette(){
+        return maquetteService.rechercherMaquettes();
+    }
+
+    @GetMapping(path = "/{id}")
+    private Maquette rechercher_maquette(@PathVariable Long id){
+        return maquetteService.rechercherUneMaquette(id);
+    }
+
+    @PostMapping
+    public Maquette ajouter_maquette(@RequestBody Maquette c){
+        return maquetteService.ajouter_maquette(c);
+    }
+
+    @PutMapping(path = "/{id}")
+    public Maquette modifier_maquette(@PathVariable Long id, @RequestBody Maquette c){
+        return maquetteService.modifier_maquette( c, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void supprimer_maquette(@PathVariable Long id){
+        maquetteService.supprimer_maquette(id);
+    }
 }

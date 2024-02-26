@@ -13,11 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Niveau;
+import com.uasz.DAOS_Microservice_Maquette.services.NiveauService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
+
+@CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/maquette/niveau")
+@RequestMapping(path = "/maquette/api/niveau")
 public class NiveauRestController {
-    
+    @Autowired
+    private NiveauService niveauService;
+
+    @GetMapping
+    private List<Niveau> lister_niveau(){
+        return niveauService.rechercherNiveaux();
+    }
+
+    @GetMapping(path = "/{id}")
+    private Niveau rechercher_niveau(@PathVariable Long id){
+        return niveauService.rechercherUnNiveau(id);
+    }
+
+    @PostMapping
+    public Niveau ajouter_niveau(@RequestBody Niveau c){
+        return niveauService.ajouter_niveau(c);
+    }
+
+    @PutMapping(path = "/{id}")
+    public Niveau modifier_niveau(@PathVariable Long id, @RequestBody Niveau c){
+        return niveauService.modifier_niveau( c, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void supprimer_niveau(@PathVariable Long id){
+        niveauService.supprimer_niveau(id);
+    }
 }

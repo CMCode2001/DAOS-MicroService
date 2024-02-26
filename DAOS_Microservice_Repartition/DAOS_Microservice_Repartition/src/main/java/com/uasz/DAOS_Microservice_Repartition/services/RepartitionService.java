@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @Transactional
 @AllArgsConstructor
 public class RepartitionService {
-    @Autowired
+      @Autowired
     private RepartitionRepository repository;
 
     public void ajouterRepartition(Repartition r ){
@@ -55,5 +55,4 @@ public class RepartitionService {
     public void supprimer_repartition(Long id){
         repository.deleteById(id);
     }
-
 }

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
 import com.uasz.DAOS_Microservice_Maquette.models.Filiere;
 import com.uasz.DAOS_Microservice_Maquette.services.FiliereService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(path = "/maquette/filiere")
+@RequestMapping(path = "/maquette/api/filiere")
 public class FiliereRestController {
     @Autowired
     private FiliereService fService;

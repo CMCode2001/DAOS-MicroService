@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.DAOS_Microservice_Maquette.*;
+
 import com.uasz.DAOS_Microservice_Maquette.models.EC;
 import com.uasz.DAOS_Microservice_Maquette.services.ECService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/maquette/ec")
+@RequestMapping("/maquette/api/ec")
 public class ECRestController {
     @Autowired
     private ECService ecService;
