@@ -1,0 +1,65 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceConfigApplication<DAOS_Microservice_Config>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Config.DaosMicroserviceConfigApplication",
+            "projectName": "DAOS_Microservice_Config",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=35929 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=DAOS_Microservice_Config"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceEmploiDuTempsApplication<DAOS_Microservice_EmploiDuTemps>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_EmploiDuTemps.DaosMicroserviceEmploiDuTempsApplication",
+            "projectName": "DAOS_Microservice_EmploiDuTemps",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceMaquetteApplication<DAOS_Microservice_Maquette>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Maquette.DaosMicroserviceMaquetteApplication",
+            "projectName": "DAOS_Microservice_Maquette",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceProxyApplication<DAOS_Microservice_Proxy>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Proxy.DaosMicroserviceProxyApplication",
+            "projectName": "DAOS_Microservice_Proxy",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceRegisterApplication<DAOS_Microservice_Register>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Register.DaosMicroserviceRegisterApplication",
+            "projectName": "DAOS_Microservice_Register",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DaosMicroserviceRepartitionApplication<DAOS_Microservice_Repartition>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.DAOS_Microservice_Repartition.DaosMicroserviceRepartitionApplication",
+            "projectName": "DAOS_Microservice_Repartition",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
