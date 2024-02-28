@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: maquette-service
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/**
+
+        - id: repartition-service
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/**
+
+        - id: emploiDuTemps-service
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/**
+
+  application:
+    name: proxy-service
+
+eureka:
+  client:
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka

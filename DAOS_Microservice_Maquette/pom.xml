@@ -82,12 +82,6 @@
 			<version>4.1.0</version>
 		</dependency>
 
-		<!-- dependance supplementaire
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency> -->
-
 		<!-- Dev tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
