@@ -13,15 +13,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Classe;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
 import com.uasz.DAOS_Microservice_Maquette.models.Semestre;
+import com.uasz.DAOS_Microservice_Maquette.repositories.ClasseRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.SemestreRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.SemestreService;;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/semestre")
 public class SemestreRestController {
-    @Autowired
+       @Autowired
     private SemestreService semestreService;
+
+    @Autowired
+    private ClasseRepository cRepository;
+    
+    @Autowired
+    private ModuleRepository mRepository;
+
+    @Autowired 
+    private SemestreRepository sRepository;
 
     @GetMapping
     public List<Semestre> lister_semestre(){
@@ -46,5 +60,33 @@ public class SemestreRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_semestre(@PathVariable Long id){
         semestreService.supprimer_semestre(id);
+    }
+
+    @PutMapping(path = "{id}/classes/{idClasse}")
+    public Semestre assigner_Classe(@PathVariable Long id,@PathVariable Long idClasse){
+        Classe c = cRepository.findById(idClasse).get();
+        Semestre s = semestreService.rechercherUneSemestre(id);
+        c.setSemestre(s);
+        cRepository.save(c);
+        return sRepository.save(s);
+    }
+
+    @PutMapping(path = "{id}/modules/{idModule}")
+    public Semestre assigner_Module(@PathVariable Long id,@PathVariable Long idModule){
+        Module m = mRepository.findById(idModule).get();
+        Semestre s = semestreService.rechercherUneSemestre(id);
+        m.setSemestre(s);
+        mRepository.save(m);
+        return sRepository.save(s);
+    }
+
+    @GetMapping(path = "{id}/classes")
+    public List<Classe> afficherClasses(@PathVariable Long id){
+        return semestreService.afficherClasses(id);
+    }
+
+    @GetMapping(path = "{id}/modules")
+    public List<Module> afficherModules(@PathVariable Long id){
+        return semestreService.afficherModules(id);
     }
 }

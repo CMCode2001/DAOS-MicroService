@@ -4,6 +4,9 @@ package com.uasz.DAOS_Microservice_Maquette.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //import com.uasz.Gestion_DAOS.utilisateur.Utilisateur;
 
 import jakarta.persistence.Entity;
@@ -23,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UE {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,20 +42,22 @@ public class UE {
     /**
      * Representation de la relation entre UE-EC
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "ue")
     private List<EC> ecs;
 
     /**
      * Representation de la relation UE-module;
      */
+    @JsonIgnore 
     @OneToMany(mappedBy = "ue")
     private List<Module> modules;
 
     /**
      * Representation de Relation Utilisateur-UE
-     
-    @ManyToOne
-    @JoinColumn(name = "utilisateur")
-    private Utilisateur utilisateur;
-    */
+     */
+    // @ManyToOne
+    // @JoinColumn(name = "utilisateur")
+    // private Utilisateur utilisateur;
+
 }

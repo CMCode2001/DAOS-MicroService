@@ -9,7 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 //importation des classes
-import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
+import com.uasz.DAOS_Microservice_Maquette.models.Classe;
 import com.uasz.DAOS_Microservice_Maquette.models.Semestre;
 import com.uasz.DAOS_Microservice_Maquette.repositories.SemestreRepository;
 
@@ -56,5 +57,15 @@ public class SemestreService {
 
     public void supprimer_semestre( Long id){
         sRepository.deleteById(id);
+    }
+
+    public List<Classe> afficherClasses(Long id){
+        Semestre s = rechercherUneSemestre(id);
+        return s.getClasses();
+    } 
+
+    public List<Module> afficherModules(Long id){
+        Semestre s = rechercherUneSemestre(id);
+        return s.getModules();
     }
 }

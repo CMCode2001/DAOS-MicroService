@@ -4,6 +4,8 @@ package com.uasz.DAOS_Microservice_Maquette.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.uasz.DAOS_Microservice_Maquette.constante.NiveauConst;
 
 import jakarta.persistence.Entity;
@@ -24,11 +26,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Niveau {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idNiveau;
-    private NiveauConst libelleNiveau;
+    private String libelleNiveau;
     private String descriptionNiveau;
     @Temporal(TemporalType.DATE)
     private Date dateCreationNiveau;
@@ -36,7 +39,7 @@ public class Niveau {
     /**
      * Representation de la relation Niveau-Cycle;
      */
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cycle")
     private Cycle cycle;
@@ -44,6 +47,7 @@ public class Niveau {
     /**
      * Representation de la relation Niveau-Formation;
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "niveau")
     private List <Formation> formations;
 }

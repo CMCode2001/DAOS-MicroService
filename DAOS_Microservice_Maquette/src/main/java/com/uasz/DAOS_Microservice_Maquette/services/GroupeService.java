@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Enseignement;
 //importation des classes
-import com.uasz.DAOS_Microservice_Maquette.*;
 import com.uasz.DAOS_Microservice_Maquette.models.Groupe;
 import com.uasz.DAOS_Microservice_Maquette.repositories.GroupeRepository;
 
@@ -60,5 +60,10 @@ public class GroupeService {
 
     public void supprimer_groupe(Long id){
         gRepository.deleteById(id);
+    }
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Groupe g = rechercherUneGroupe(id);
+        return g.getEnseignements();
     }
 }

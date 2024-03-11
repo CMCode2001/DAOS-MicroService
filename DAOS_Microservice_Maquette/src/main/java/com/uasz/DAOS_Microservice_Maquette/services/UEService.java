@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 //importation des classes
-import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
 import com.uasz.DAOS_Microservice_Maquette.models.EC;
 import com.uasz.DAOS_Microservice_Maquette.models.UE;
 import com.uasz.DAOS_Microservice_Maquette.repositories.UERepository;
@@ -22,6 +22,11 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.UERepository;
 public class UEService {
     @Autowired
     private UERepository ueRepository;
+
+    @Autowired
+    private ECService ecService;
+
+    @Autowired ModuleService mService;
 
     public void ajouterUE(UE ue){
         UE savedUE = ueRepository.save(ue);
@@ -52,8 +57,13 @@ public class UEService {
         ueRepository.delete(ue);
     }
 
-    public List<EC> afficherLesECs(UE ue){
+    /*public List<EC> afficherLesECs(UE ue){
         return ueRepository.findByUE(ue);
+    }*/
+
+    public List<EC> afficherLesECs(Long id){
+       UE ue =  rechercherUE(id);
+       return ue.getEcs();
     }
 
     public UE modifier_UE(UE ue, Long id){
@@ -71,4 +81,22 @@ public class UEService {
         return ueRepository.save(savedUE);
     }
 
+
+
+    public void ajouterECdansUE(EC ec, UE ue) {
+        ue.getEcs().add(ec); 
+        ec.setUe(ue); 
+        ecService.ajouterEC(ec);
+    }
+
+    public void ajouterModuleDansUE(Module module, UE ue) {
+        ue.getModules().add(module); 
+        module.setUe(ue); 
+        mService.ajouterModule(module);
+    }
+    
+    public List<Module> afficherModules(Long id){
+        UE ue = rechercherUE(id);
+        return ue.getModules();
+    }
 }

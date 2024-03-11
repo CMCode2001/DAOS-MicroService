@@ -12,16 +12,20 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 //importation des classes
-import com.uasz.DAOS_Microservice_Maquette.*;
 import com.uasz.DAOS_Microservice_Maquette.models.Classe;
+import com.uasz.DAOS_Microservice_Maquette.models.Enseignement;
+import com.uasz.DAOS_Microservice_Maquette.models.Groupe;
 import com.uasz.DAOS_Microservice_Maquette.repositories.ClasseRepository;
 
 @Service
 @Transactional
 @AllArgsConstructor
 public class ClasseService {
-    @Autowired
+     @Autowired
     private ClasseRepository cRepository;
+
+    @Autowired
+    private GroupeService gService;
 
     public void ajouterClasse(Classe c) {
         c.setDateCreationClasse(new Date(System.currentTimeMillis()));
@@ -61,6 +65,22 @@ public class ClasseService {
 
     public void supprimer_classe(Long id){
         cRepository.deleteById(id);
+    }
+
+    public List<Groupe> afficherGroupes(Long id){
+        Classe c = rechercherUneClasse(id);
+        return c.getGroupes();
+    }
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Classe c = rechercherUneClasse(id);
+        return c.getEnseignements();
+    }
+
+    public void ajouterGroupeDansClasse(Classe c, Groupe g) {
+        c.getGroupes().add(g);
+        g.setClasse(c); 
+        gService.ajouterGroupe(g);
     }
     
 }

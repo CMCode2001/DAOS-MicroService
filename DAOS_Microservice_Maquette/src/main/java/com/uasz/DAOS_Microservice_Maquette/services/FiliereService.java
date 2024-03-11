@@ -12,13 +12,14 @@ import lombok.AllArgsConstructor;
 
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.models.Filiere;
+import com.uasz.DAOS_Microservice_Maquette.models.Formation;
 import com.uasz.DAOS_Microservice_Maquette.repositories.FiliereRepository;
 
 @Service
 @Transactional
 @AllArgsConstructor
 public class FiliereService {
-    @Autowired
+       @Autowired
     private FiliereRepository fRepository;
 
     public void ajouterFiliere(Filiere f){
@@ -58,5 +59,11 @@ public class FiliereService {
     public void supprimer_filiere(Long id){
         fRepository.deleteById(id);
     }
+
+    public List<Formation> afficheFormations(Long id){
+        Filiere f = rechercherUneFiliere(id);
+        return f.getFormations();
+    }
+
 
 }

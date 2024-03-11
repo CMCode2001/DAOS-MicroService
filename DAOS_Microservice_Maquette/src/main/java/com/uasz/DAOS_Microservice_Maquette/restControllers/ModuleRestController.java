@@ -13,15 +13,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Enseignement;
 import com.uasz.DAOS_Microservice_Maquette.models.Module;
+import com.uasz.DAOS_Microservice_Maquette.repositories.EnseignementRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.ModuleService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/module")
 public class ModuleRestController {
-    @Autowired
+        @Autowired
     private ModuleService moduleService;
+ 
+    @Autowired
+    private EnseignementRepository eRepository;
+
+    @Autowired
+    private ModuleRepository moduleRepository;
+
 
     @GetMapping
     public List<Module> lister_module(){
@@ -46,5 +56,19 @@ public class ModuleRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_module(@PathVariable Long id){
         moduleService.supprimer_module(id);
+    }
+    
+     @PutMapping(path = "{id}/enseignements/{idEnseignement}")
+    public Module assigner_Enseignement(@PathVariable Long id,@PathVariable Long idEnseignement){
+        Enseignement e = eRepository.findById(idEnseignement).get();
+        Module m = moduleService.rechercherUnModule(id);
+        e.setModule(m);
+        eRepository.save(e);
+        return moduleRepository.save(m);
+    }
+
+    @GetMapping("/{id}/enseignements")
+    public List<Enseignement> afficherLesEnseignements(@PathVariable("id") Long id) {
+       return moduleService.afficherEnseignements(id);
     }
 }

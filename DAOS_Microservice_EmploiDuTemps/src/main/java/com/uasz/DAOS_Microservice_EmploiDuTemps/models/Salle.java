@@ -3,6 +3,9 @@ package com.uasz.DAOS_Microservice_EmploiDuTemps.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,13 +23,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSalle;
     private String libelleSalle;
     private String codeSalle;
-    private int CapaciteSalle;
+    private int capaciteSalle;
     private String descriptionSalle;
     @Temporal(TemporalType.DATE)
     private Date dateCreationSalle;
@@ -34,6 +38,7 @@ public class Salle {
     /**
      * Representation de la relation entre Batiment-Salle
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "batiment")
     private Batiment batiment;
@@ -41,6 +46,7 @@ public class Salle {
     /**
      * Representation de la relation entre Salle-Seance
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "salle")
     private List<Seance> seances;
 

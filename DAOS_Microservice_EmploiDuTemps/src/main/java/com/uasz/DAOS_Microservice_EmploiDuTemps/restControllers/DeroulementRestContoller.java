@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Deroulement;
+import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Seance;
 import com.uasz.DAOS_Microservice_EmploiDuTemps.services.DeroulementService;
 
 
@@ -23,7 +24,7 @@ import com.uasz.DAOS_Microservice_EmploiDuTemps.services.DeroulementService;
  */
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/emploi/deroulement")
+@RequestMapping("/emploi/api/deroulement")
 public class DeroulementRestContoller {
     @Autowired
     private DeroulementService deroulementService;
@@ -48,8 +49,8 @@ public class DeroulementRestContoller {
 
     //PUT
      @PutMapping(path = "/{id}")
-    public Deroulement modifier_Deroulement(@RequestBody Deroulement Deroulement, @PathVariable Long idBat){
-        return deroulementService.modifier_Deroulement(Deroulement,idBat);
+    public Deroulement modifier_Deroulement(@RequestBody Deroulement Deroulement, @PathVariable Long id){
+        return deroulementService.modifier_Deroulement(Deroulement,id);
     }
 
 
@@ -59,6 +60,9 @@ public class DeroulementRestContoller {
         deroulementService.supprimer_Deroulement(id);
     }
 
-
+    @GetMapping(path = "/{id}/seance")
+    public Seance afficherSeance(Long id){
+        return deroulementService.afficherSeance(id);
+    }
     
 }

@@ -23,7 +23,7 @@ public class DaosMicroserviceProxyApplication {
 					.uri("http://localhost:8081/"))
 				.route("repartition-service", r->r.path("/repartition/**")
 					.uri("http://localhost:8082/"))
-				.route("emploiDuTemps-service", r->r.path("/emploiDuTemps/**")
+				.route("emploiDuTemps-service", r->r.path("/emploi/**")
 					.uri("http://localhost:8083/"))
 				.build();
 	}

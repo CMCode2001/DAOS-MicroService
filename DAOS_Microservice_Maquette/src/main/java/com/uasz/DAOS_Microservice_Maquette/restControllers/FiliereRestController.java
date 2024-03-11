@@ -14,14 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.DAOS_Microservice_Maquette.models.Filiere;
+import com.uasz.DAOS_Microservice_Maquette.models.Formation;
+import com.uasz.DAOS_Microservice_Maquette.repositories.FiliereRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.FormationRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.FiliereService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/filiere")
 public class FiliereRestController {
-    @Autowired
+     @Autowired
     private FiliereService fService;
+
+    @Autowired
+    private FormationRepository formationRepository;
+
+    @Autowired
+    private FiliereRepository filiereRepository;
 
     @GetMapping
     public List<Filiere> lister_filiere(){
@@ -46,5 +55,19 @@ public class FiliereRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_filiere(@PathVariable Long id ){
         fService.supprimer_filiere(id);
+    }
+
+    @PutMapping(path = "{id}/formations/{idFormation}")
+    public Filiere assignerFormations(@PathVariable Long id,@PathVariable Long idFormation){
+        Formation f = formationRepository.findById(idFormation).get();
+        Filiere fi = fService.rechercherUneFiliere(id);
+        f.setFiliere(fi);
+        formationRepository.save(f);
+        return filiereRepository.save(fi);
+    }
+
+    @GetMapping(path = "{id}/formations")
+    public List<Formation> afficherFormations(@PathVariable Long id) {
+        return fService.afficheFormations(id);
     }
 }

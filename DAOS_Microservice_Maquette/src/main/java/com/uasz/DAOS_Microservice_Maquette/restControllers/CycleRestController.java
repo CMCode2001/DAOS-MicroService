@@ -3,6 +3,7 @@ package com.uasz.DAOS_Microservice_Maquette.restControllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.uasz.DAOS_Microservice_Maquette.models.Cycle;
+import com.uasz.DAOS_Microservice_Maquette.models.Niveau;
+import com.uasz.DAOS_Microservice_Maquette.repositories.CycleRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.NiveauRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.CycleService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/cycle")
 public class CycleRestController {
-    @Autowired
+     @Autowired
     private CycleService cService;
+
+    @Autowired
+    private CycleRepository cRepository;
+
+    @Autowired
+    private NiveauRepository nRepository;
 
     @GetMapping
     private List<Cycle> lister_cycle(){
@@ -47,5 +57,19 @@ public class CycleRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_cycle(@PathVariable Long id){
         cService.supprimer_cycle(id);
+    }
+
+    @PutMapping(path = "{id}/niveau/{idNiveau}")
+    public Cycle assigner_Repartition(@PathVariable Long id,@PathVariable Long idNiveau){
+        Niveau n = nRepository.findById(idNiveau).get();
+        Cycle c = cService.rechercherUnCycle(id);
+        n.setCycle(c);
+        nRepository.save(n);
+        return cRepository.save(c);
+    }
+
+    @GetMapping(path = "{id}/niveau")
+    public List<Niveau> afficherNiveaux(@PathVariable Long id) {
+        return cService.afiicherNiveaux(id);
     }
 }

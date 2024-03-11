@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Enseignement;
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.models.Module;
 import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
@@ -60,5 +61,13 @@ public class ModuleService {
 
     public void supprimer_module(Long id){
         mRepository.deleteById(id);
+    }
+
+
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Module m = rechercherUnModule(id);
+        return m.getEnseignements();
+        
     }
 }

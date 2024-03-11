@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Formation;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
 import com.uasz.DAOS_Microservice_Maquette.models.Maquette;
+import com.uasz.DAOS_Microservice_Maquette.repositories.FormationRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.MaquetteRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.MaquetteService;
 
 
@@ -22,8 +27,17 @@ import com.uasz.DAOS_Microservice_Maquette.services.MaquetteService;
 @RestController
 @RequestMapping(path = "/maquette/api/maquette")
 public class MaquetteRestController {
-    @Autowired
+  @Autowired
     private MaquetteService maquetteService;
+
+    @Autowired
+    private FormationRepository fRepository;
+
+    @Autowired 
+    private MaquetteRepository mRepository;
+
+    @Autowired
+    private ModuleRepository moduleRepository;
 
     @GetMapping
     private List<Maquette> lister_maquette(){
@@ -48,5 +62,33 @@ public class MaquetteRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_maquette(@PathVariable Long id){
         maquetteService.supprimer_maquette(id);
+    }
+
+    @PutMapping(path = "{id}/formation/{idFormation}")
+    public Maquette assigner_Formation(@PathVariable Long id,@PathVariable Long idFormation){
+        Formation f = fRepository.findById(idFormation).get();
+        Maquette m = maquetteService.rechercherUneMaquette(id);
+        m.setFormation(f);
+        fRepository.save(f);
+        return  mRepository.save(m);
+    }
+
+    @PutMapping(path = "{id}/modules/{idModule}")
+    public Maquette ajouter_Module_Maquette(@PathVariable Long id,@PathVariable Long idModule){
+        Module m = moduleRepository.findById(idModule).get();
+        Maquette maquette = maquetteService.rechercherUneMaquette(id);
+        m.setMaquette(maquette);
+        moduleRepository.save(m);
+        return mRepository.save(maquette);
+    }
+
+    @GetMapping(path = "{id}/modules")
+    public List<Module> affichModules(@PathVariable Long id) {
+        return maquetteService.afficherModules(id);
+    }
+    
+    @GetMapping(path = "{id}/formation")
+    public Formation afficherFormation(@PathVariable Long id) {
+        return maquetteService.afficherFormation(id);
     }
 }
