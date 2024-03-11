@@ -12,13 +12,14 @@ import lombok.AllArgsConstructor;
 
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.models.Cycle;
+import com.uasz.DAOS_Microservice_Maquette.models.Niveau;
 import com.uasz.DAOS_Microservice_Maquette.repositories.CycleRepository;
 
 @Service
 @Transactional
 @AllArgsConstructor
 public class CycleService {
-    @Autowired
+     @Autowired
     private CycleRepository cRepository;
 
     public void ajouterCycle(Cycle c){
@@ -57,6 +58,11 @@ public class CycleService {
 
     public void supprimer_cycle(Long id){
         cRepository.deleteById(id);
+    }
+
+    public List<Niveau> afiicherNiveaux(Long id){
+        Cycle c = rechercherUnCycle(id);
+        return c.getNiveaux();
     }
 
 }

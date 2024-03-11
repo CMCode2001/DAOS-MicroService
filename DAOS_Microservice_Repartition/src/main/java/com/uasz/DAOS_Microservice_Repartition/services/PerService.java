@@ -1,17 +1,18 @@
 package com.uasz.DAOS_Microservice_Repartition.services;
 
-
+import java.util.Date;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.DAOS_Microservice_Repartition.models.PER;
 import com.uasz.DAOS_Microservice_Repartition.repositories.PerRepository;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @Transactional
@@ -26,6 +27,7 @@ public class PerService {
      * @return per
      */
     public PER ajouterPer(PER per){
+        per.setDateCreationEns(new Date(System.currentTimeMillis()));
         return perRepository.save(per);
 
     }

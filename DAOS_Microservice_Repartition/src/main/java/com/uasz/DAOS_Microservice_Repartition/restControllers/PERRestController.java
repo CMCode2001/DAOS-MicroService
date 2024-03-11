@@ -20,7 +20,7 @@ import com.uasz.DAOS_Microservice_Repartition.services.PerService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/repartition/per")
+@RequestMapping(path = "/repartition/api/per")
 public class PERRestController {
 
     @Autowired
@@ -50,5 +50,6 @@ public class PERRestController {
     public void supprimer_per(@PathVariable Long id){
         perService.deletePer(id);
     }
+    
     
 }

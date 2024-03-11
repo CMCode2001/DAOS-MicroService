@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Emploi;
+import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Seance;
 import com.uasz.DAOS_Microservice_EmploiDuTemps.repositories.EmploiRepository;
 
 import jakarta.transaction.Transactional;
@@ -22,6 +23,8 @@ public class EmploiService {
     //AJOUTER 
     public Emploi ajouter_emploi(Emploi e){
         e.setDateCreationEmploi(new Date(System.currentTimeMillis()));
+        e.setDateDebutEmploi(new Date(System.currentTimeMillis()));
+        e.setDateFinEmploi(new Date(System.currentTimeMillis()));
         return repository.save(e);
     }
 
@@ -43,5 +46,10 @@ public class EmploiService {
     //LISTER TOUT ATTRIBUT
     public List<Emploi> listerToutEmploi() {
        return repository.findAll();
+    }
+
+    public List<Seance> afficherSeances(Long id){
+        Emploi e = recherche_emploi(id);
+        return e.getSeances();
     }
 }

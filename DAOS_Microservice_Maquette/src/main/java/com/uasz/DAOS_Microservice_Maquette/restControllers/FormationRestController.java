@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.DAOS_Microservice_Maquette.models.Classe;
 import com.uasz.DAOS_Microservice_Maquette.models.Formation;
+import com.uasz.DAOS_Microservice_Maquette.models.Maquette;
+import com.uasz.DAOS_Microservice_Maquette.repositories.ClasseRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.FormationRepository;
+import com.uasz.DAOS_Microservice_Maquette.repositories.MaquetteRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.FormationService;
 
 
@@ -23,6 +28,15 @@ import com.uasz.DAOS_Microservice_Maquette.services.FormationService;
 public class FormationRestController {
     @Autowired
     private FormationService formationService;
+
+    @Autowired
+    private ClasseRepository cRepository;
+
+    @Autowired
+    private FormationRepository fRepository;
+
+    @Autowired
+    private MaquetteRepository mRepository;
 
     @GetMapping
     private List<Formation> lister_formation(){
@@ -47,5 +61,33 @@ public class FormationRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_formation(@PathVariable Long id){
         formationService.supprimer_formation(id);
+    }
+
+    @PutMapping(path = "{id}/classes/{idClasse}")
+    public Formation assigner_Classe(@PathVariable Long id,@PathVariable Long idClasse){
+        Classe c = cRepository.findById(idClasse).get();
+        Formation f = formationService.rechercherUneFormation(id);
+        c.setFormation(f);
+        cRepository.save(c);
+        return fRepository.save(f);
+    }
+
+    @PutMapping(path = "{id}/maquette/{idMaquette}")
+    public Formation assigner_Maquette(@PathVariable Long id,@PathVariable Long idMaquette){
+        Maquette m = mRepository.findById(idMaquette).get();
+        Formation f = formationService.rechercherUneFormation(id);
+        m.setFormation(f);
+        mRepository.save(m);
+        return fRepository.save(f);
+    }
+
+    @GetMapping(path = "{id}/classes")
+    public List<Classe> assignerClasses(@PathVariable Long id){
+        return formationService.afficherClasses(id);
+    }
+
+    @GetMapping(path = "{id}/maquette")
+    public Maquette assignerMaquette(@PathVariable Long id){
+        return formationService.afficherMaquette(id);
     }
 }

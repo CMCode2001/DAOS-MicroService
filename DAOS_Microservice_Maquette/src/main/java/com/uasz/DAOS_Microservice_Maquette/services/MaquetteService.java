@@ -11,7 +11,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 //importation des classes
-import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
+import com.uasz.DAOS_Microservice_Maquette.models.Formation;
 import com.uasz.DAOS_Microservice_Maquette.models.Maquette;
 import com.uasz.DAOS_Microservice_Maquette.repositories.MaquetteRepository;
 
@@ -58,5 +59,15 @@ public class MaquetteService {
 
     public void supprimer_maquette(Long id){
         mRepository.deleteById(id);
+    }
+
+    public List<Module> afficherModules(Long id){
+        Maquette m = rechercherUneMaquette(id);
+        return m.getModules();
+    }
+
+    public Formation afficherFormation(Long id){
+        Maquette m = rechercherUneMaquette(id);
+        return m.getFormation();
     }
 }

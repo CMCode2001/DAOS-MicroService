@@ -3,6 +3,8 @@ package com.uasz.DAOS_Microservice_EmploiDuTemps.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Emploi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +36,8 @@ public class Emploi {
     
     /**
      * Representation de relation Emploi-seance
-     */
-    @OneToMany(mappedBy = "emploi", cascade = CascadeType.ALL)
+    */
+    @OneToMany(mappedBy = "emploi")
     private List<Seance> seances;
     
 }

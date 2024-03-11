@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Batiment;
+import com.uasz.DAOS_Microservice_EmploiDuTemps.models.Salle;
 import com.uasz.DAOS_Microservice_EmploiDuTemps.repositories.BatimentRepository;
 
 import jakarta.transaction.Transactional;
@@ -19,6 +20,8 @@ import lombok.Data;
 public class BatimentService {
     @Autowired
     private BatimentRepository batimentRepository;
+
+    @Autowired SalleService service;
 
     /**
      *  Methode ajouter un Batiment
@@ -91,5 +94,17 @@ public class BatimentService {
 
     public Batiment recherche_Batiment(Long idBat) {
       return batimentRepository.findById(idBat).get();
+    }
+
+    
+    public void ajouterSalleDansBatiment(Salle s, Batiment b) {
+        b.getSalles().add(s);
+        s.setBatiment(b);
+        service.ajouter_Salle(s);
+    }
+
+    public List<Salle> afficherLesSalles(Long id){
+        Batiment b =  recherche_Batiment(id);
+        return b.getSalles();
     }
 }

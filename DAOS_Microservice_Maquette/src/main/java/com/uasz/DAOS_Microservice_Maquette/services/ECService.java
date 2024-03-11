@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.models.EC;
 import com.uasz.DAOS_Microservice_Maquette.repositories.ECRepository;
+import com.uasz.DAOS_Microservice_Maquette.models.Module;
 
 @Service
 @Transactional
@@ -20,6 +21,9 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.ECRepository;
 public class ECService {
     @Autowired
     private ECRepository ecRepository;
+
+    @Autowired
+    private ModuleService moduleService;
 
     public void ajouterEC(EC ec){
         ec.setDateCreationEC(new Date(System.currentTimeMillis()));
@@ -63,6 +67,18 @@ public class ECService {
 
     public void supprimer_ec(Long id){
         ecRepository.deleteById(id);
+    }
+
+    public EC addModuleToEC(Long idEC, Module module) {
+        EC ec = ecRepository.findById(idEC).get();
+        module.setEc(ec);
+        ec.getModules().add(module); // Add module directly to the EC's list
+        return ecRepository.save(ec); // Save the entire EC object
+    }
+
+    public List<Module> getModulesByEC(Long idEC) {
+        EC ec = ecRepository.findById(idEC).get();
+        return ec.getModules();
     }
 
 }

@@ -2,6 +2,8 @@ package com.uasz.DAOS_Microservice_EmploiDuTemps.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Deroulement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +34,5 @@ public class Deroulement {
      * Representation de la relation Seance-Deroulement
      */
     @OneToOne
-    @JoinColumn(name = "seance")
-    private Seance seance;
+    private Seance seance ;
 }

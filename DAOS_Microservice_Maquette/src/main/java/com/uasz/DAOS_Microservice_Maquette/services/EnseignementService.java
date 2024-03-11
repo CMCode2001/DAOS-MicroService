@@ -37,7 +37,7 @@ public class EnseignementService {
     public Enseignement modifierEnseignement(Enseignement ens){
         Enseignement e = rechercherUneEnseignement(ens.getIdEnseignement());
         e.setObjectifsEnseignement(ens.getObjectifsEnseignement());
-        e.setDescriptionEnseignements(ens.getDescriptionEnseignements());
+        e.setDescriptionEnseignement(ens.getDescriptionEnseignement());
         return eRepository.save(e);
     }
 
@@ -58,5 +58,10 @@ public class EnseignementService {
     public void supprimer_enseignement(Long id){
         eRepository.deleteById(id);
     }
+
+    // public List<Repartition> afficherRepartitions(Long id){
+    //     Enseignement e = rechercherUneEnseignement(id);
+    //     return e.getRepartitions();
+    // }
 
 }

@@ -12,7 +12,9 @@ import lombok.AllArgsConstructor;
 
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Classe;
 import com.uasz.DAOS_Microservice_Maquette.models.Formation;
+import com.uasz.DAOS_Microservice_Maquette.models.Maquette;
 import com.uasz.DAOS_Microservice_Maquette.repositories.FormationRepository;
 
 @Service
@@ -59,4 +61,14 @@ public class FormationService {
     public void supprimer_formation(Long id){
         fRepository.deleteById(id);
     }
+
+    public List<Classe> afficherClasses(Long id){
+        Formation f = rechercherUneFormation(id);
+        return f.getClasses();
+    } 
+
+    public Maquette afficherMaquette(Long id){
+        Formation f = rechercherUneFormation(id);
+        return f.getMaquette();
+    } 
 }

@@ -25,7 +25,7 @@ import com.uasz.DAOS_Microservice_Repartition.services.VacataireService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
-@RequestMapping(path = "/repartition/vacataire")
+@RequestMapping(path = "/repartition/api/vacataire")
 public class VacataireRestController {
 
     @Autowired

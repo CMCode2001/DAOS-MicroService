@@ -3,6 +3,9 @@ package com.uasz.DAOS_Microservice_Repartition.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 //import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
 
@@ -13,7 +16,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor
 public class Repartition {
 
@@ -33,14 +36,18 @@ public class Repartition {
     @Temporal(TemporalType.DATE)
     private Date dateCreationRepartition;
 
-    /*@ManyToOne
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "enseignement")
-    private Enseignement enseignement;*/
+    private Enseignement enseignement;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "enseignant")
     private Enseignant enseignant;
-
-    /*@OneToMany(mappedBy = "repartition", cascade = CascadeType.ALL)
-    private List<Seance> seances;*/
+    
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "repartition", cascade = CascadeType.ALL)
+    // private List<Seance> seances;
 }
+

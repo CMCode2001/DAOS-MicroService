@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 
 //importation des classes
 import com.uasz.DAOS_Microservice_Maquette.*;
+import com.uasz.DAOS_Microservice_Maquette.models.Cycle;
+import com.uasz.DAOS_Microservice_Maquette.models.Formation;
 import com.uasz.DAOS_Microservice_Maquette.models.Niveau;
 import com.uasz.DAOS_Microservice_Maquette.repositories.NiveauRepository;
 
@@ -20,7 +22,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.NiveauRepository;
 @Service
 @Transactional
 public class NiveauService {
-    @Autowired
+   @Autowired
     private NiveauRepository nRepository;
 
     public void ajouterNiveau(Niveau n){
@@ -59,5 +61,15 @@ public class NiveauService {
 
     public void supprimer_niveau(Long id){
         nRepository.deleteById(id);
+    }
+
+    public List<Formation> afficherFormations(Long id){
+        Niveau n = rechercherUnNiveau(id);
+        return n.getFormations();
+    }
+
+    public Cycle afficherCycle(Long id){
+        Niveau n = rechercherUnNiveau(id);
+       return n.getCycle();
     }
 }
