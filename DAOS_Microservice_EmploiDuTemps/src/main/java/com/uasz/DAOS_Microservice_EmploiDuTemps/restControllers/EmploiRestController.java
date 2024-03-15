@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * EmploiRestController
  */
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/emploi/api/emploi-du-temps")
 public class EmploiRestController {

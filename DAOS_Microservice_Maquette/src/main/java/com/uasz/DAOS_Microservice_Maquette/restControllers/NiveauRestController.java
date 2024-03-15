@@ -22,7 +22,7 @@ import com.uasz.DAOS_Microservice_Maquette.services.NiveauService;
 
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/niveau")
 public class NiveauRestController {

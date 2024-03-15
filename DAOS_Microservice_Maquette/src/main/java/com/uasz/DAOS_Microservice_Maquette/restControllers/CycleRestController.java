@@ -21,7 +21,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.CycleRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.NiveauRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.CycleService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/cycle")
 public class CycleRestController {

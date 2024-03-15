@@ -17,7 +17,7 @@ import com.uasz.DAOS_Microservice_Repartition.models.Enseignant;
 import com.uasz.DAOS_Microservice_Repartition.models.Repartition;
 import com.uasz.DAOS_Microservice_Repartition.services.EnseignantService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/repartition/api/enseignant")
 public class EnseignantRestController {

@@ -19,7 +19,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.FiliereRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.FormationRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.FiliereService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/filiere")
 public class FiliereRestController {

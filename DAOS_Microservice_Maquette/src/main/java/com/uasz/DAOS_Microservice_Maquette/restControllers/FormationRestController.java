@@ -22,7 +22,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.MaquetteRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.FormationService;
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/formation")
 public class FormationRestController {

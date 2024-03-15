@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * SalleRestController
  */
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/emploi/api/salle")
 public class SalleRestController {

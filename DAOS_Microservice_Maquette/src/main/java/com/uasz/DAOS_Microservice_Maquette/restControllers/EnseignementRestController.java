@@ -17,7 +17,7 @@ import com.uasz.DAOS_Microservice_Maquette.models.Enseignement;
 import com.uasz.DAOS_Microservice_Maquette.repositories.EnseignementRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.EnseignementService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/enseignement")
 public class EnseignementRestController {

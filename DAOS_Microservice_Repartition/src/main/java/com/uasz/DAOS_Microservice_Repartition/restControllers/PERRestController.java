@@ -18,7 +18,7 @@ import com.uasz.DAOS_Microservice_Repartition.services.PerService;
 
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/repartition/api/per")
 public class PERRestController {

@@ -19,7 +19,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.EnseignementRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.ModuleService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/module")
 public class ModuleRestController {

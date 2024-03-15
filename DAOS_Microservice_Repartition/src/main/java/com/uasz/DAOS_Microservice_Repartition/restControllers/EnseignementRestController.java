@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uasz.DAOS_Microservice_Repartition.models.Repartition;
 import com.uasz.DAOS_Microservice_Repartition.services.EnseignementService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/enseignement")
 public class EnseignementRestController {
