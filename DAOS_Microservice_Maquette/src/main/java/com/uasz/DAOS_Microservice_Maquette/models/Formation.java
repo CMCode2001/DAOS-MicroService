@@ -44,14 +44,12 @@ public class Formation {
     /**
     * Representation de la relation Filiere-Formation;
     */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "filiere")
     private Filiere filiere;
     /** 
     * Representation de la relation Formation-Niveau;
     */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name= "niveau")
     private Niveau niveau;

@@ -16,6 +16,17 @@ spring:
           uri: http://localhost:8083/
           predicates:
             - Path=/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS   
 
   application:
     name: proxy-service

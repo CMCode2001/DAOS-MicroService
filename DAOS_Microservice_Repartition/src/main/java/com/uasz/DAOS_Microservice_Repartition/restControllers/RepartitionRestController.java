@@ -24,7 +24,7 @@ import com.uasz.DAOS_Microservice_Repartition.services.RepartitionService;
 
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/repartition/api/repartition")
 public class RepartitionRestController {

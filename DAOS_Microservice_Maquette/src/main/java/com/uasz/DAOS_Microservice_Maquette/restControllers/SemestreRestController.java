@@ -21,7 +21,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.SemestreRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.SemestreService;;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/maquette/api/semestre")
 public class SemestreRestController {

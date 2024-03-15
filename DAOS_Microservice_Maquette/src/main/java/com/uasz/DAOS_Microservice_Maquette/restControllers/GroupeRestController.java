@@ -21,7 +21,7 @@ import com.uasz.DAOS_Microservice_Maquette.services.GroupeService;
 
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/groupe")
 public class GroupeRestController {

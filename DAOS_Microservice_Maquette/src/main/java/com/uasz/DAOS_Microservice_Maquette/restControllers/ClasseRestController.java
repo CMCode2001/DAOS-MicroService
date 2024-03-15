@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,9 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.ClasseRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.EnseignementRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.ClasseService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+import jakarta.servlet.http.HttpServletResponse;
+
+//@CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/classe")
 public class ClasseRestController {
@@ -35,6 +38,17 @@ public class ClasseRestController {
 
     @Autowired
     private ClasseRepository classeRepository;
+
+
+    // // Méthode pour gérer les requêtes OPTIONS envoyées à /maquette/api/classe
+    // @RequestMapping(value = "", method = RequestMethod.OPTIONS)
+    // public void handleOptions(HttpServletResponse response) {
+    //     // Ajoutez les en-têtes CORS appropriés ici
+    //     response.setHeader("Access-Control-Allow-Origin", "*"); // Autorise toutes les origines
+    //     response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Méthodes HTTP autorisées
+    //     response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // En-têtes autorisés
+    //     response.setHeader("Access-Control-Max-Age", "3600"); // Durée de validité du pré-remplissage en secondes
+    // }
 
     @GetMapping
     private List<Classe> lister_classe(){
@@ -71,12 +85,12 @@ public class ClasseRestController {
 
     @GetMapping("/{id}/groupes")
     public List<Groupe> afficherLesGroupes(@PathVariable("id") Long id) {
-       return classeService.afficherGroupes(id);
+    return classeService.afficherGroupes(id);
     }
 
     @GetMapping("/{id}/enseignements")
     public List<Enseignement> afficherLesEnseignements(@PathVariable("id") Long id) {
-       return classeService.afficherEnseignements(id);
+    return classeService.afficherEnseignements(id);
     }
 
     @PutMapping(path = "{id}/enseignements/{idEnseignement}")

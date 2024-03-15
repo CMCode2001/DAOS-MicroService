@@ -23,7 +23,7 @@ import com.uasz.DAOS_Microservice_Maquette.services.MaquetteService;
 
 
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+// @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
 @RequestMapping(path = "/maquette/api/maquette")
 public class MaquetteRestController {

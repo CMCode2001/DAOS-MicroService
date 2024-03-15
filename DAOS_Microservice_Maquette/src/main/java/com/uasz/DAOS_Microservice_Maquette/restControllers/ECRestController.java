@@ -22,7 +22,7 @@ import com.uasz.DAOS_Microservice_Maquette.repositories.ECRepository;
 import com.uasz.DAOS_Microservice_Maquette.repositories.ModuleRepository;
 import com.uasz.DAOS_Microservice_Maquette.services.ECService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/maquette/api/ec")
 public class ECRestController {

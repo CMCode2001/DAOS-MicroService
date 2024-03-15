@@ -20,7 +20,7 @@ import com.uasz.DAOS_Microservice_Maquette.models.Module;
 import com.uasz.DAOS_Microservice_Maquette.models.UE;
 import com.uasz.DAOS_Microservice_Maquette.services.UEService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/maquette/api/ue")
 public class UERestController {

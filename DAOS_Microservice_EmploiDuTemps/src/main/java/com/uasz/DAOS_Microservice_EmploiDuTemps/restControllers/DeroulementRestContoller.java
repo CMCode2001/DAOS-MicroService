@@ -22,7 +22,7 @@ import com.uasz.DAOS_Microservice_EmploiDuTemps.services.DeroulementService;
 /**
  * DeroulementRestContoller
  */
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/emploi/api/deroulement")
 public class DeroulementRestContoller {
